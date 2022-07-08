@@ -8,6 +8,7 @@ const COLORS = {
 /*----- app's state (variables) -----*/
 let board; // nested arrays represent columns
 let turn; // 1 or -1
+let gameStatus; // null -> game in play, 'T' -> for tie/ 1, -1 for player win
 
 /*----- cached element references -----*/
 const markerEls = [...document.querySelectorAll('#markers > div')];
@@ -29,6 +30,7 @@ function init() {
         [0, 0, 0, 0, 0, 0], // column 6
     ];
     turn = 1;
+    gameStatus = null;
     render();
 }
 
@@ -56,5 +58,77 @@ function handleDrop(evt) {
     const rowIdx = colArr.indexOf(0);
     colArr[rowIdx] = turn;
     turn *= -1;
+    winner = checkWin(colIdx, rowIdx);
     render();
+}
+
+function checkWin(colIdx, rowIdx) {
+    const player = board[colIdx][rowIdx];
+    return checkVertWin(colIdx, rowIdx, player) ||
+    checkHorWin(colIdx, rowIdx, player) ||
+    checkDiagLeftWin(colIdx, rowIdx, player) ||
+    checkDiagRWin(colIdx, rowIdx, player);
+}
+
+function checkVertWin(colIdx, rowIdx, player) {
+    let count = 1;
+    rowIdx--;
+    while (board[colIdx][rowIdx] === player && rowIdx >= 0) {
+        count++;
+        rowIdx--;
+    }
+    return count === 4 ? winner = player : null;
+}
+
+function checkHorWin(colIdx, rowIdx, player) {
+    let count = 1;
+    let idx = colIdx + 1;
+    while ((idx < board.length) && board[idx][rowIdx] === player) {
+        count++;
+        idx--;
+    }
+    idx = colIdx - 1;
+    while ((idx >= 0) && board[idx][rowIdx] === player) {
+        count++;
+        idx--;
+    } 
+    return count >= 4 ? winner = player : null;
+}
+
+function checkDiagLeftWin(colIdx, rowIdx, player) {
+    let count = 1;
+    let idx1 = colIdx -1;
+    let idx2 = rowIdx + 1;
+    while(idx1 >= 0 && idx2 < board[0].length && board[idx1][idx2] === player) {
+        count++;
+        idx1--;
+        idx2++;
+    }
+    idx1 = colIdx + 1;
+    idx2 = rowIdx - 1;
+    while(idx1 < board.length && idx2 >= 0 && board[idx1][idx2] === player) {
+        count++;
+        idx1++;
+        idx2--;
+    }
+    return count >= 4 ? winner = player : null;
+}
+
+function checkDiagRWin(colIdx, rowIdx, player) {
+    let count = 1;
+    let idx1 = colIdx + 1;
+    let idx2 = rowIdx + 1;
+    while(idx1 < board.length && idx2 < board[0] && board[idx1][idx2] === player) {
+        count++;
+        idx1++;
+        idx2++;
+    }
+    idx1 = colIdx - 1;
+    idx2 = rowIdx - 1;
+    while(idx1 >= 0 && idx2 >= 0 && board[idx1][idx2] === player) {
+        count++;
+        idx1--;
+        idx2--;
+    }
+    return count >= 4 ? winner = player : null
 }
