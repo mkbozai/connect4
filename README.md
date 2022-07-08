@@ -13,7 +13,6 @@ In Connect 4, each player has their own unique set of colored discs, and the obj
 * JavaScript
 * HTML
 * CSS
-* CardStarter CSS Library
 
 ## Getting Started
 [Click to play Connect4 now!](https://mkbozai.github.io/connect4/)
