@@ -8,10 +8,11 @@ const COLORS = {
 /*----- app's state (variables) -----*/
 let board; // nested arrays represent columns
 let turn; // 1 or -1
-let gameStatus; // null -> game in play, 'T' -> for tie/ 1, -1 for player win
+let winner;
 
 /*----- cached element references -----*/
 const markerEls = [...document.querySelectorAll('#markers > div')];
+const msgEl = document.querySelector('h1');
 
 /*----- event listeners -----*/
 document.getElementById('markers').addEventListener('click', handleDrop);
@@ -30,7 +31,7 @@ function init() {
         [0, 0, 0, 0, 0, 0], // column 6
     ];
     turn = 1;
-    gameStatus = null;
+    winner = null;
     render();
 }
 
@@ -42,12 +43,14 @@ function render() {
         });
     });
     renderMarkers();
+    // renderMessage();
 }
 
 // hide/show the markers (hide if no 0's exist in that column)
 function renderMarkers() {
     markerEls.forEach(function(markerEl, colIdx) {
         markerEl.style.visibility = board[colIdx].includes(0) ? 'visible' : 'hidden';
+        if (winner === 1 || winner === -1) {markerEl.style.visibility = 'hidden'};
     });
 }
 
@@ -85,7 +88,7 @@ function checkHorWin(colIdx, rowIdx, player) {
     let idx = colIdx + 1;
     while ((idx < board.length) && board[idx][rowIdx] === player) {
         count++;
-        idx--;
+        idx++;
     }
     idx = colIdx - 1;
     while ((idx >= 0) && board[idx][rowIdx] === player) {
@@ -132,3 +135,13 @@ function checkDiagRWin(colIdx, rowIdx, player) {
     }
     return count >= 4 ? winner = player : null
 }
+
+// function renderMessage() {
+//     if (gameStatus === null) {
+//         msgEl.innerHTML = `Player <span style="color: ${COLORS[turn]}">${COLORS[turn].toUpperCase()}</span>'s Turn`;
+//     } else if (gameStatus === 'T') {
+//         msgEl.textContent = 'Tie Game'
+//     } else {
+//         msgEl.innerHTML = `Player <span style="color: ${COLORS[gameStatus]}">${COLORS[gameStatus].toUpperCase()}</span>'s Wins!`;
+//     }
+// }
