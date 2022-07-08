@@ -13,9 +13,11 @@ let winner;
 /*----- cached element references -----*/
 const markerEls = [...document.querySelectorAll('#markers > div')];
 const msgEl = document.querySelector('h1');
+const replayBtn = document.querySelector('button');
 
 /*----- event listeners -----*/
 document.getElementById('markers').addEventListener('click', handleDrop);
+document.querySelector('button').addEventListener('click', init);
 
 /*----- functions -----*/
 init();
@@ -44,6 +46,7 @@ function render() {
     });
     renderMarkers();
     renderMessage();
+    replayBtn.style.visibility = board[0][0] ? 'visible' : 'hidden';
 }
 
 // hide/show the markers (hide if no 0's exist in that column)
@@ -140,9 +143,12 @@ function checkDiagRWin(colIdx, rowIdx, player) {
 function renderMessage() {
     if (winner === null) {
         msgEl.innerHTML = `Player <span style="color: ${COLORS[turn]}">${COLORS[turn].toUpperCase()}</span>'s Turn`;
+        replayBtn.textContent = 'Restart';
     } else if (winner === 'T') {
         msgEl.textContent = 'Tie Game';
+        replayBtn.textContent = 'Restart';
     } else {
         msgEl.innerHTML = `Player <span style="color: ${COLORS[winner]}">${COLORS[winner].toUpperCase()}</span>'s Wins!`; 
+        replayBtn.textContent = 'Play Again';
     }
 }
