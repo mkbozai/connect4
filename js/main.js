@@ -6,8 +6,8 @@ const COLORS = {
 }
 
 /*----- app's state (variables) -----*/
-let board; // nested arrays represent columns
-let turn; // 1 or -1
+let board;
+let turn;
 let winner;
 
 /*----- cached element references -----*/
@@ -49,7 +49,6 @@ function render() {
     replayBtn.style.visibility = board.flat().includes(1) ? 'visible' : 'hidden';
 }
 
-// hide/show the markers (hide if no 0's exist in that column)
 function renderMarkers() {
     markerEls.forEach(function(markerEl, colIdx) {
         markerEl.style.visibility = board[colIdx].includes(0) ? 'visible' : 'hidden';
@@ -106,14 +105,14 @@ function checkDiagLeftWin(colIdx, rowIdx, player) {
     let count = 1;
     let idx1 = colIdx -1;
     let idx2 = rowIdx + 1;
-    while(idx1 >= 0 && idx2 < board[0].length && board[idx1][idx2] === player) {
+    while (idx1 >= 0 && idx2 < board[0].length && board[idx1][idx2] === player) {
         count++;
         idx1--;
         idx2++;
     }
     idx1 = colIdx + 1;
     idx2 = rowIdx - 1;
-    while(idx1 < board.length && idx2 >= 0 && board[idx1][idx2] === player) {
+    while (idx1 < board.length && idx2 >= 0 && board[idx1][idx2] === player) {
         count++;
         idx1++;
         idx2--;
@@ -125,14 +124,14 @@ function checkDiagRWin(colIdx, rowIdx, player) {
     let count = 1;
     let idx1 = colIdx + 1;
     let idx2 = rowIdx + 1;
-    while(idx1 < board.length && idx2 < board[0] && board[idx1][idx2] === player) {
+    while (idx1 < board.length && idx2 < board[0] && board[idx1][idx2] === player) {
         count++;
         idx1++;
         idx2++;
     }
     idx1 = colIdx - 1;
     idx2 = rowIdx - 1;
-    while(idx1 >= 0 && idx2 >= 0 && board[idx1][idx2] === player) {
+    while (idx1 >= 0 && idx2 >= 0 && board[idx1][idx2] === player) {
         count++;
         idx1--;
         idx2--;

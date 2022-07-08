@@ -19,10 +19,10 @@ In Connect 4, each player has their own unique set of colored discs, and the obj
 [Click to play Connect4 now!](https://mkbozai.github.io/connect4/)
 
 ## Next Steps
-1. I'd like to like the make the play again/reset button look more accessible by add color or an animation around it.
+1. I'd like to make the play again / reset button look more accessible by adding color or an animation around it.
 
 2. I want to incoroporate an audio sound for anytime someone wins the game.
 
-3. I'd like to animate the game pieces by having them drop into the game board, like how it would be in real life.
+3. I'd like to animate the game pieces by having them drop into the game board, like how it looks with a physical board.
 
 4. I'd like to incorporate AI levels with different options of difficulty.
