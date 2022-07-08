@@ -46,7 +46,7 @@ function render() {
     });
     renderMarkers();
     renderMessage();
-    replayBtn.style.visibility = board[0][0] ? 'visible' : 'hidden';
+    replayBtn.style.visibility = board.flat().includes(1) ? 'visible' : 'hidden';
 }
 
 // hide/show the markers (hide if no 0's exist in that column)
