@@ -14,11 +14,13 @@
   
   #markers {
     display: grid;
-    grid-template-columns: repeat(7, 12vmin);
-    gap: 2vmin;
+    grid-template-columns: repeat(7, 5vmin);
+    gap: 6vmin;
     margin-top: 2vmin;
+    position: relative;
+    right: 5vmin;
   }
-  
+
   #markers > div {
     height: 16vmin;
     border-width: 8vmin;
@@ -35,8 +37,8 @@
   
   #board {
     display: grid;
-    grid-template-columns: repeat(7, 12vmin);
-    grid-template-rows: repeat(6, 12vmin);
+    grid-template-columns: repeat(7, 9vmin);
+    grid-template-rows: repeat(6, 9vmin);
     gap: 2vmin;
     margin-top: -3vmin;
   }

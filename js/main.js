@@ -43,7 +43,7 @@ function render() {
         });
     });
     renderMarkers();
-    // renderMessage();
+    renderMessage();
 }
 
 // hide/show the markers (hide if no 0's exist in that column)
@@ -70,7 +70,8 @@ function checkWin(colIdx, rowIdx) {
     return checkVertWin(colIdx, rowIdx, player) ||
     checkHorWin(colIdx, rowIdx, player) ||
     checkDiagLeftWin(colIdx, rowIdx, player) ||
-    checkDiagRWin(colIdx, rowIdx, player);
+    checkDiagRWin(colIdx, rowIdx, player) ||
+    (board.flat().includes(0) ? null : 'T')
 }
 
 function checkVertWin(colIdx, rowIdx, player) {
@@ -136,12 +137,12 @@ function checkDiagRWin(colIdx, rowIdx, player) {
     return count >= 4 ? winner = player : null
 }
 
-// function renderMessage() {
-//     if (gameStatus === null) {
-//         msgEl.innerHTML = `Player <span style="color: ${COLORS[turn]}">${COLORS[turn].toUpperCase()}</span>'s Turn`;
-//     } else if (gameStatus === 'T') {
-//         msgEl.textContent = 'Tie Game'
-//     } else {
-//         msgEl.innerHTML = `Player <span style="color: ${COLORS[gameStatus]}">${COLORS[gameStatus].toUpperCase()}</span>'s Wins!`;
-//     }
-// }
+function renderMessage() {
+    if (winner === null) {
+        msgEl.innerHTML = `Player <span style="color: ${COLORS[turn]}">${COLORS[turn].toUpperCase()}</span>'s Turn`;
+    } else if (winner === 'T') {
+        msgEl.textContent = 'Tie Game';
+    } else {
+        msgEl.innerHTML = `Player <span style="color: ${COLORS[winner]}">${COLORS[winner].toUpperCase()}</span>'s Wins!`; 
+    }
+}
