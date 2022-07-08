@@ -5,13 +5,27 @@
   body {
     height: 100vh;
     margin: 0;
+    background: url(https://miro.medium.com/max/1400/1*LSNZRN25d5jaZGIwMqSb-Q.jpeg), conic-gradient(#D7C1D8, #9A6C9B, #441C42);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* font-family: 'Open Sans', sans-serif; */
   }
-  
+
+  h1 {
+    font-size: 35px;
+    color: mintcream;
+  }
+
+  button {
+    font-size: 24px;
+    border-radius: 8px;
+    padding: 12px 24px;
+  }
+
   #markers {
     display: grid;
     grid-template-columns: repeat(7, 5vmin);
@@ -25,7 +39,8 @@
     height: 16vmin;
     border-width: 8vmin;
     border-style: solid;
-    border-color: lightgray transparent transparent;
+    border-color: mintcream transparent transparent;
+    opacity: .75;
     transform: scale(0.7);
   }
   
@@ -40,6 +55,7 @@
     grid-template-columns: repeat(7, 9vmin);
     grid-template-rows: repeat(6, 9vmin);
     gap: 2vmin;
+    background-color: darkgray;
     margin-top: -3vmin;
   }
   

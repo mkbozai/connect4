@@ -1,8 +1,8 @@
 /*----- constants -----*/
 const COLORS = {
     '0': 'white',
-    '1': 'red',
-    '-1': 'yellow'
+    '1': 'gold',
+    '-1': 'aquamarine'
 }
 
 /*----- app's state (variables) -----*/
@@ -142,13 +142,13 @@ function checkDiagRWin(colIdx, rowIdx, player) {
 
 function renderMessage() {
     if (winner === null) {
-        msgEl.innerHTML = `Player <span style="color: ${COLORS[turn]}">${COLORS[turn].toUpperCase()}</span>'s Turn`;
+        msgEl.innerHTML = `<span style="color: ${COLORS[turn]}">${COLORS[turn].toUpperCase()}</span>'s Turn`;
         replayBtn.textContent = 'Restart';
     } else if (winner === 'T') {
         msgEl.textContent = 'Tie Game';
         replayBtn.textContent = 'Restart';
     } else {
-        msgEl.innerHTML = `Player <span style="color: ${COLORS[winner]}">${COLORS[winner].toUpperCase()}</span>'s Wins!`; 
+        msgEl.innerHTML = `<span style="color: ${COLORS[winner]}">${COLORS[winner].toUpperCase()}</span> Wins!`; 
         replayBtn.textContent = 'Play Again';
     }
 }
